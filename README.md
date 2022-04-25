@@ -28,7 +28,7 @@ grid.draw(frame_curve)
 
 
 ```
-# use place
+# use place (fixed widths and heights)
 frame_curve<-frameGrob(layout=grid.layout(3,2,widths=unit(c(1,6,6),"lines"),heights=unit(c(1,1,1),"lines")))
 frame_curve<-placeGrob(frame_curve,textGrob("Curve"),col=1,row=1)
 frame_curve<-placeGrob(frame_curve,linesGrob(x=c(0,1),y=c(0.5,0.5)),col=1,row=2)
@@ -43,7 +43,7 @@ grid.draw(frame_curve)
 ```
 
 ```
-# use pack
+# use pack (flexible widths and heights)
 myvp<-viewport(width=unit(5,"lines"),height=unit(1,"lines"))
 
 frame_curve<-frameGrob()
