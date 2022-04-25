@@ -24,3 +24,40 @@ grid.newpage()
 grid.draw(frame_curve)
 
 ```
+
+
+
+```
+# use place
+frame_curve<-frameGrob(layout=grid.layout(3,2,widths=unit(c(1,6,6),"lines"),heights=unit(c(1,1,1),"lines")))
+frame_curve<-placeGrob(frame_curve,textGrob("Curve"),col=1,row=1)
+frame_curve<-placeGrob(frame_curve,linesGrob(x=c(0,1),y=c(0.5,0.5)),col=1,row=2)
+frame_curve<-placeGrob(frame_curve,pointsGrob(x=0.5,y=0.5),col=1,row=3)
+
+frame_curve<-placeGrob(frame_curve,textGrob("Curve"),col=2,row=1)
+frame_curve<-placeGrob(frame_curve,textGrob("ABCDEFG"),col=2,row=2)
+frame_curve<-placeGrob(frame_curve,pointsGrob(x=0.5,y=0.5),col=2,row=3)
+
+grid.newpage()
+grid.draw(frame_curve)
+```
+
+```
+# use pack
+myvp<-viewport(width=unit(5,"lines"),height=unit(1,"lines"))
+
+frame_curve<-frameGrob()
+frame_curve<-packGrob(frame_curve,textGrob("Curve",vp=myvp),col=1,row=1,force.height=T)
+frame_curve<-packGrob(frame_curve,linesGrob(x=c(0.3,0.7),y=c(0.5,0.5),vp=myvp),col=1,row=2)
+frame_curve<-packGrob(frame_curve,pointsGrob(x=0.5,y=0.5,vp=myvp),col=1,row=3,force.height=T)
+frame_curve<-packGrob(frame_curve,rectGrob(vp=myvp),col=1,row=4,force.height=T)
+
+frame_curve<-packGrob(frame_curve,textGrob("Curve"),col=2,row=1,width=unit(5,"lines"))
+frame_curve<-packGrob(frame_curve,textGrob("Evan"),col=2,row=2)
+frame_curve<-packGrob(frame_curve,pointsGrob(x=0.5,y=0.5),col=2,row=3)
+frame_curve<-packGrob(frame_curve,rectGrob(),col=2,row=4,height=unit(1,"lines"),force.width=F,width=unit(5,"lines"))
+frame_curve<-packGrob(frame_curve,linesGrob(x=c(0.3,0.7),y=c(0.5,0.5)),col=2,row=4,height=unit(1,"lines"),force.width=F,width=unit(5,"lines"))
+
+grid.newpage()
+grid.draw(frame_curve)
+```
