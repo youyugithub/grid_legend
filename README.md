@@ -61,3 +61,22 @@ frame_curve<-packGrob(frame_curve,linesGrob(x=c(0.3,0.7),y=c(0.5,0.5)),col=2,row
 grid.newpage()
 grid.draw(frame_curve)
 ```
+# value color
+
+```
+  my_legend<-function(xx,at,col_fun){
+    zeroone_to_xx<-approxfun(seq(0,1,length.out=length(xx)),xx,rule=2)
+    xx_to_zeroone<-approxfun(xx,seq(0,1,length.out=length(xx)),rule=2)
+    grid.rect(
+      x=0.75,y=seq(0,1,0.01),
+      width=0.5,height=0.01,
+      gp=gpar(col=NA,fill=col_fun(zeroone_to_xx(seq(0,1,0.01)))))
+    grid.text(label=at,x=0.4,y=xx_to_zeroone(at),just="right",gp=gpar(cex=0.5))
+    for(xx_idx in 1:length(at)){
+      grid.lines(x=c(0.4,0.5),y=rep(xx_to_zeroone(at)[xx_idx],2))
+    }
+  }
+  
+  freq_col_fun<-circlize::colorRamp2(seq(0,0.3,length.out=9),RColorBrewer::brewer.pal(9,"YlOrRd"))
+  my_legend(seq(0,0.5,0.1),at=seq(0,0.5,0.1),freq_col_fun)
+```
